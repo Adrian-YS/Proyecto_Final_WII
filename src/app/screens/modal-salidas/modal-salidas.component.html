@@ -1,0 +1,36 @@
+<body class="body">
+    <nav>
+        <div class="container">
+            <h1 class="logo" style="font-size: 24px; margin: 0;">Sygmus Seguridad</h1>
+            <ul>
+                <li><a th:href="@{/salidas}" class="btn btn-success" style="margin-top: 10px;">Salidas</a></li>
+            </ul>
+        </div>
+    </nav>
+    <h2>Registrar Nueva Salida</h2>
+    <div class="container-form">
+        <form th:action="@{/productos/salidas/guardar}" method="post" th:object="${producto}">
+    
+            <div class="mb-3">
+                <label for="productoId">ID del Producto:</label>
+                <select id="productoId" class="form-control" name="productoId" th:field="*{productoId}">
+                    <option value="" th:if="${#lists.isEmpty(productos)}">No hay productos disponibles</option>
+                    <option th:each="producto : ${productos}"
+                            th:value="${producto.productoId}"
+                            th:text="${producto.productoNombre}+ '  ' +${producto.productoId} "></option>
+                </select>
+            </div>
+    
+    
+            <div class="mb-3">
+                <label for="productoNombre">Nombre del Producto:</label>
+                <input type="text" id="productoNombre" class="form-control" name="productoNombre" th:field="*{productoNombre}">
+            </div>
+            <div class="mb-3">
+                <label for="salidas">Cantidad de Salida:</label>
+                <input type="number" id="salidas" class="form-control" name="salidas" th:field="*{salidas}">
+            </div>
+            <button type="submit" class="btn btn-success">Guardar Salida</button>
+        </form>
+    </div>
+    </body>

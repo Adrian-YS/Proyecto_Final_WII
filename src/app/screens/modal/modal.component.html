@@ -1,0 +1,45 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const productoIdField = document.getElementById('productoId');
+        const randomId = Math.floor(10000000 + Math.random() * 90000000); // número aleatorio 8 dígitos
+        productoIdField.value = randomId;
+    });
+</script>
+<body class="body">
+    <nav>
+        <div class="container">
+            <h1 class="logo" style="font-size: 24px; margin: 0;">Sygmus Seguridad</h1>
+            <ul>
+    
+                <li><a th:href="@{/productos}" class="btn btn-success" style="margin-top: 10px;">Productos</a></li>
+                <li><a th:href="@{/productos/modal}" class="btn btn-success" style="margin-top: 10px;">Registro</a></li>
+            </ul>
+        </div>
+    </nav>
+    <h2>Formulario de Registro</h2>
+    <div class="container-form">
+        <form th:action="@{/productos/guardar}" method="post" th:object="${producto}">
+    
+            <div class="mb-3 mt-3">
+                <label for="productoId">ID:</label>
+                <input type="number" class="form-control" id="productoId" placeholder="Enter ID" th:field="*{productoId}" readonly>
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="productoNombre">Nombre del Producto:</label>
+                <input type="text" id="productoNombre" class="form-control" name="productoNombre" th:field="*{productoNombre}">
+            </div>
+            <div class="mb-3">
+                <label for="descripcion">Descripción del Producto:</label>
+                <input type="text" id="descripcion" class="form-control" name="descripcion" th:field="*{descripcion}">
+            </div>
+            <div class="mb-3">
+                <label for="stockInicial">Stock Inicial:</label>
+                <input type="number" id="stockInicial" class="form-control" name="stockInicial" th:field="*{stockInicial}">
+            </div>
+    
+    
+    
+            <button type="submit" class="btn btn-success">Guardar</button>
+        </form>
+    </div>
+    </body>
